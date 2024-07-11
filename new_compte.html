@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Création d'un compte PCSCloud</title>
+    <link rel="stylesheet" href="new_compte.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-section">
+            <div class="account-info" style="position:relative;left:100px;top:10px">
+			<img src="logo.png" alt="Cloud Image" class="cloud-image" style="width:250px">
+                <h2>Votre compte PCSCloud</h2>
+                <form id="account-form">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <p><a href="#">Déjà client gsdrive ou htgalfdrive ?</a></p>
+                    <p>Ce compte vous donnera accès à votre tableau de bord PCSCloud.</p>
+                    <p>Celui-ci vous permettra de souscrire un ou plusieurs services(*) de votre choix :</p>
+                    <ul>
+                        <li>plateforme de développement</li>
+                        <li>Cluster WEBDEV</li>
+                        <li>plateforme d'exploitation</li>
+                        <li>plateforme de télémétrie</li>
+                    </ul>
+                    <p>* : la facturation des consommations de ces services est ensuite faite mensuellement</p>
+                    <p>Cette offre est sans engagement de durée.</p>
+                    <p>Sous-total: 16 € HT</p>
+                    <p>TVA: 0.00 €</p>
+                    <p><strong>À RÉGLER MAINTENANT: 16 € TTC</strong></p>
+                </form>
+            </div>
+            <div class="payment-info" style="position:relative;right:180px;top:10px">
+                <h2>Paiement</h2>
+                <form id="payment-form">
+                    <label for="billing-name">Raison sociale ou dénomination</label>
+                    <input type="text" id="billing-name" name="billing-name" required>
+                    <label for="civility">Civilité</label>
+                    <select id="civility" name="civility">
+                        <option value="mr">Monsieur</option>
+                        <option value="mme">Madame</option>
+                        <option value="mlle">Mademoiselle</option>
+                    </select>
+                    <label for="first-name">Prénom</label>
+                    <input type="text" id="first-name" name="first-name" required>
+                    <label for="last-name">Nom</label>
+                    <input type="text" id="last-name" name="last-name" required>
+                    <label for="address">Adresse</label>
+                    <input type="text" id="address" name="address" required>
+                    <label for="postal-code">Code postal</label>
+                    <input type="text" id="postal-code" name="postal-code" required>
+                    <label for="city">Ville</label>
+                    <input type="text" id="city" name="city" required>
+                    <label for="country">Pays</label>
+                    <select id="country" name="country">
+                        <option value="congo">CONGO</option>
+                        <!-- Ajoutez d'autres options de pays ici -->
+                    </select>
+                    <div class="checkboxes">
+                        <input type="checkbox" id="auto-debit" name="auto-debit">
+                        <label for="auto-debit" style="position:relative;top:-28px">J'autorise PCSCloud à prélever automatiquement...</label>
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms" style="position:relative;top:-28px">J'ai lu le <a href="#">contrat PCSCloud</a> et j'y adhère sans réserve.</label>
+                    </div>
+                    <button type="submit">Procéder au paiement</button>
+                    <p>Autres moyens de paiement, <a href="#">contactez-nous !</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="script_enregistrement.js"></script>
+</body>
+</html>

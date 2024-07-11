@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation CSS avec Hover</title>
+    <style>
+        .animated-div {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            transition: transform 0.5s ease;
+        }
+
+        .animated-div:hover {
+            transform: scale(1.5) rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-div"></div>
+</body>
+</html>

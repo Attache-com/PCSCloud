@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCSCloud Dashboard</title>
+    <link rel="stylesheet" href="styles_dashboard.css">
+</head>
+
+<body>
+
+	<!-- Le modal -->
+	<div id="myModal" class="modal">
+	  <!-- Contenu du modal -->
+	  <div class="modal-content medium" style="padding-bottom:50px;margin-top:0px">
+		<span class="close" id="close1">&times;</span>
+		<h2>Avertissement</h2>
+		<span style="color:red">
+			<strong>Avis d'échéance d'abonnement : </strong> Votre abonnement de stockage d'un an a expiré le 17 mars 2024. 
+		</span>
+		<p> Pour remedier à l'interruption de vos service, nous vous invitons à le renouveler dès maintenant.</p>
+		<p> Assurez la continuité de l'accès à vos données en procédant au renouvellement via votre espace client.</p>
+		<p> Merci de votre compréhension et de votre fidélité.</p>
+		<button id="btn_se_connecter" type="submit"><a href="abonnement.html">RENOUVELER MAINTENANT</a></button>
+	  </div>
+	</div>
+	
+	<!-- Le modal User-->
+	<div id="myModalUser" class="modal" >
+	  <!-- Contenu du modal -->
+	  <div class="modal-content medium" style="width:30%;margin-top:0px">
+		<span class="close" id="close2">&times;</span>
+		<div class="header-right" style="margin-bottom:0">
+			<span>GED</span>
+		</div>
+		<h4 style="margin-bottom:3px;margin-top:7px;">GED Archivage</h4>
+		<p style="margin:0 10px 20px 0;padding:0">ged.marcopera@gmail.com</p>
+		
+		<button id="btn_se_connecter2" type="submit"><a href="index.html">Se déconnecter</a></button>
+	  </div>
+	</div>
+	
+	<!-- Le modal Corbeille-->
+	<div id="modalCorbeille" class="modal">
+        <div class="modal-content medium" style="margin-top:0px">
+            <span class="close" id="closeCorbeille">&times;</span>
+            <h2>Corbeille</h2>
+            <ul id="trashList">
+                <li style="marin-right:0"><i class="pdf-icon" style="marin-right:0"></i>Prise d'information copyright du bas titre<button class="restoreBtn" style="position:relative;left:60px">Restaurer</button></li>
+                <li style="marin-right:0"><i class="folder-icon" >Dossier de Sauvegarde de GED</i> <button class="restoreBtn" style="position:relative;left:110px">Restaurer</button></li>
+            </ul>
+        </div>
+    </div>
+
+	<!-- Le modal Config-->
+	<div id="configModal" class="modal">
+        <div class="modal-content medium" style="margin-top:0px">
+            <span class="close" id="closeConfig">&times;</span>
+            <h2>Paramètres de Configuration</h2>
+            <form id="configForm">
+                <label for="bgColor">Couleur de fond:</label>
+                <input type="color" id="bgColor" name="bgColor"><br>
+                
+                <label for="fontFamily">Police:</label>
+                <select id="fontFamily" name="fontFamily">
+                    <option value="Arial">Arial</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="Georgia">Georgia</option>
+                </select><br>
+                
+                <label for="fontSize">Taille de la police:</label>
+                <input type="number" id="fontSize" name="fontSize" min="10" max="50" value="16"><br>
+
+                <label for="darkMode">Mode sombre:</label>
+                <input type="checkbox" id="darkMode" name="darkMode" style="position:relative;margin:0;width:10px;top:-20px;left:110px">
+                
+                <label for="language">Langue:</label>
+                <select id="language" name="language">
+                    <option value="fr">Français</option>
+                    <option value="en">Anglais</option>
+                    <option value="es">Espagnol</option>
+                    <option value="de">Allemand</option>
+                </select><br>
+
+                <label for="notifications">Activer les notifications:</label>
+                <input type="checkbox" id="notifications" name="notifications" style="position:relative;margin:0;width:10px;top:-20px;left:175px">
+
+                <label for="acceptCookies">Accepter les cookies:</label>
+                <input type="checkbox" id="acceptCookies" name="acceptCookies" style="position:relative;margin:0;width:10px;top:-20px;left:164px"><br>
+                
+                <button type="button" id="saveConfigBtn">Sauvegarder</button>
+            </form>
+        </div>
+    </div>
+
+	<!-- Le modal Telechargement-->
+	<div id="myModalUpload" class="modal">
+	  <div class="modal-content medium" style="width:25%;margin-top:0px">
+		<span class="close" id="closeUpload">&times;</span>
+		<p>Téléchargement en cours...</p>
+		<div class="loader"></div>
+		<button id="cancelBtn">Annuler</button>
+	  </div>
+	</div>
+
+
+
+    <div class="sidebar">
+        <div class="logo">
+            <img src="logo.png" alt="pCloud">
+        </div>
+        <ul class="menu">
+            <li><button id="uploadLi" class="upload-button">Upload</button></li>
+            <li><button id="corbeilLi" class="corbeil-button">Corbeille</button></li>
+            <li><button id="configLi" class="config-button">Parametre</button></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <header>
+            <div class="header-left">
+                <span style="color:red">
+					<strong>Avis d'échéance d'abonnement : </strong> Votre abonnement de stockage d'un an a expiré depuis le 17.03.2024. 
+					<p style="margin-top:5px"><a href="abonnement.html">Merci de le renouveler dès maintenant</a></p>					
+				</span>
+            </div>
+            <div class="header-right" id="openModalUser">
+                <span>GED</span>
+            </div>
+        </header>
+        <div class="content table-container">
+            <h2>Documents</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Taille</th>
+                        <th>Upload le</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="mylienUpload">
+                        <td><i class="folder-icon"></i> Sauvegarde16032024</td>
+                        <td>17.60 GB</td>
+                        <td>16/03/2024</td>
+                    </tr> 
+					<tr id="mylienUpload2">
+                        <td><i class="folder-icon"></i> Sauvegarde09032024</td>
+                        <td>17.40 GB</td>
+                        <td>09/03/2024</td>
+                    </tr>
+                    <tr id="mylienUpload3">
+                        <td><i class="folder-icon"></i> Sauvegarde02032024</td>
+                        <td>17.27 GB</td>
+                        <td>02/03/2024</td>
+                    </tr>
+                    <tr id="mylienUpload4">
+                        <td><i class="folder-icon"></i> Sauvegarde24022024</td>
+                        <td>17.13 GB</td>
+                        <td>24/02/2024</td>
+                    </tr> 
+					<tr id="mylienUpload5">
+                        <td><i class="folder-icon"></i> Sauvegarde17022024</td>
+                        <td>16.97 GB</td>
+                        <td>17/02/2024</td>
+                    </tr>
+					<tr id="mylienUpload6">
+                        <td><i class="folder-icon"></i> Sauvegarde10022024</td>
+                        <td>16.76 GB</td>
+                        <td>10/02/2024</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde03022024</td>
+                        <td>16.62 GB</td>
+                        <td>27/01/2024</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde27012024</td>
+                        <td>16.40 GB</td>
+                        <td>27/01/2024</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde20012024</td>
+                        <td>16.27 GB</td>
+                        <td>20/01/2024</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde13012024</td>
+                        <td>16.11 GB</td>
+                        <td>13/01/2024</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde06012024</td>
+                        <td>15.93 GB</td>
+                        <td>06/01/2024</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde30122023</td>
+                        <td>15.80 GB</td>
+                        <td>30/12/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde23122023</td>
+                        <td>15.69 GB</td>
+                        <td>23/12/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde16122023</td>
+                        <td>15.52 GB</td>
+                        <td>16/12/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde09122023</td>
+                        <td>15.38 GB</td>
+                        <td>09/12/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde02122023</td>
+                        <td>15.19 GB</td>
+                        <td>02/12/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde25112023</td>
+                        <td>15.04 GB</td>
+                        <td>25/11/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde18112023</td>
+                        <td>14.88 GB</td>
+                        <td>18/11/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde10112023</td>
+                        <td>14.70 GB</td>
+                        <td>10/11/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde04112023</td>
+                        <td>14.56 GB</td>
+                        <td>04/11/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde28102023</td>
+                        <td>14.39 GB</td>
+                        <td>28/10/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde21102023</td>
+                        <td>14.22 GB</td>
+                        <td>21/10/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde14102023</td>
+                        <td>14.06 GB</td>
+                        <td>14/10/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde07102023</td>
+                        <td>13.93 GB</td>
+                        <td>07/10/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde30092023</td>
+                        <td>13.75 GB</td>
+                        <td>30/09/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde23092023</td>
+                        <td>13.62 GB</td>
+                        <td>23/09/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde16092023</td>
+                        <td>13.47 GB</td>
+                        <td>16/09/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde09092023</td>
+                        <td>13.31 GB</td>
+                        <td>09/09/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde02092023</td>
+                        <td>13.14 GB</td>
+                        <td>02/09/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde26082023</td>
+                        <td>12.99 GB</td>
+                        <td>26/08/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde19082023</td>
+                        <td>12.73 GB</td>
+                        <td>19/08/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde12082023</td>
+                        <td>12.56 GB</td>
+                        <td>12/08/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde05082023</td>
+                        <td>12.39 GB</td>
+                        <td>05/08/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde29072023</td>
+                        <td>12.22 GB</td>
+                        <td>29/07/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde22072023</td>
+                        <td>12.21 GB</td>
+                        <td>22/07/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde15072023</td>
+                        <td>12.06 GB</td>
+                        <td>15/07/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde08072023</td>
+                        <td>11.90 GB</td>
+                        <td>08/07/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde01072023</td>
+                        <td>11.78 GB</td>
+                        <td>01/07/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde24062023</td>
+                        <td>11.60 GB</td>
+                        <td>24/06/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde17062023</td>
+                        <td>11.52 GB</td>
+                        <td>17/06/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde10062023</td>
+                        <td>11.38 GB</td>
+                        <td>10/06/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde03062023</td>
+                        <td>11.24 GB</td>
+                        <td>03/06/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde27052023</td>
+                        <td>11.08 GB</td>
+                        <td>27/05/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde20052023</td>
+                        <td>10.89 GB</td>
+                        <td>20/05/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde13052023</td>
+                        <td>10.71 GB</td>
+                        <td>13/05/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde06052023</td>
+                        <td>10.63 GB</td>
+                        <td>06/05/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde29042023</td>
+                        <td>10.47 GB</td>
+                        <td>29/04/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde22042023</td>
+                        <td>10.32 GB</td>
+                        <td>22/04/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde15042023</td>
+                        <td>10.18 GB</td>
+                        <td>15/04/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde08042023</td>
+                        <td>10.02 GB</td>
+                        <td>08/04/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde01042023</td>
+                        <td>9.88 GB</td>
+                        <td>01/04/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde25032023</td>
+                        <td>9.73 GB</td>
+                        <td>25/03/2023</td>
+                    </tr>
+					<tr>
+                        <td><i class="folder-icon"></i> Sauvegarde18032023</td>
+                        <td>9.59 GB</td>
+                        <td>18/03/2023</td>
+                    </tr>
+                    <tr>
+                        <td><i class="pdf-icon"></i> Le Guide de démarrage - partir du bon pied.pdf</td>
+                        <td>75.9 MB</td>
+                        <td>16/03/2023</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+	
+	<footer>
+		<p class="copyright">
+			© 2024 PCSCloud Tous droits réservés.
+		</p>
+    </footer>
+<script>
+// MODAL ABONNEMENT
+// ----------------------------------------------
+// Récupérer le bouton pour ouvrir le modal
+var btn = document.getElementById("uploadLi");
+var btn_user = document.getElementById("openModalUser");
+var btn_corbeille = document.getElementById("corbeilLi");
+var btn_config = document.getElementById("configLi");
+var btn_upload = document.getElementById("mylienUpload");
+var btn_upload2 = document.getElementById("mylienUpload2");
+var btn_upload3 = document.getElementById("mylienUpload3");
+var btn_upload4 = document.getElementById("mylienUpload4");
+var btn_upload5 = document.getElementById("mylienUpload5");
+var btn_upload6 = document.getElementById("mylienUpload6");
+
+
+// Récupérer l'élément modal
+var modal = document.getElementById("myModal");
+var modal_user = document.getElementById("myModalUser");
+var modal_corbeille = document.getElementById("modalCorbeille");
+var modal_config = document.getElementById("configModal");
+var modal_upload = document.getElementById("myModalUpload");
+
+
+// Récupérer l'élément <span> qui ferme le modal
+<!-- var span = document.getElementsByClassName("close")[0]; -->
+var span = document.getElementById("close1");
+var span_user = document.getElementById("close2");
+var span_corbeille = document.getElementById("closeCorbeille");
+var span_config = document.getElementById("closeConfig");
+var span_upload = document.getElementById("closeUpload");
+
+
+modal.style.display = "block";
+
+// Quand l'utilisateur clique sur le bouton, ouvre le modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+btn_user.onclick = function() {
+  modal_user.style.display = "block";
+}
+btn_corbeille.onclick = function() {
+  modal_corbeille.style.display = "block";
+}
+btn_config.onclick = function() {
+  modal_config.style.display = "block";
+}
+btn_upload.onclick = function() {
+  modal_upload.style.display = "block";
+}
+btn_upload2.onclick = function() {
+  modal_upload.style.display = "block";
+}
+btn_upload3.onclick = function() {
+  modal_upload.style.display = "block";
+}
+btn_upload4.onclick = function() {
+  modal_upload.style.display = "block";
+}
+btn_upload5.onclick = function() {
+  modal_upload.style.display = "block";
+}
+btn_upload6.onclick = function() {
+  modal_upload.style.display = "block";
+}
+
+
+// Quand l'utilisateur clique sur <span> (x), ferme le modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+span_user.onclick = function() {
+  modal_user.style.display = "none";
+}
+span_corbeille.onclick = function() {
+  modal_corbeille.style.display = "none";
+}
+span_config.onclick = function() {
+  modal_config.style.display = "none";
+}
+span_upload.onclick = function() {
+  modal_upload.style.display = "none";
+}
+
+// Quand l'utilisateur clique en dehors du modal, ferme le modal
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+  
+  if (event.target == modal_user) {
+    modal_user.style.display = "none";
+  }
+  
+  if (event.target == modal_corbeille) {
+    modal_corbeille.style.display = "none";
+  }
+  
+  if (event.target == modal_config) {
+    modal_config.style.display = "none";
+  }
+}
+
+// Quand l'utilisateur clique sur le btn restaure du modat Corbeille
+ var restoreButtons = document.getElementsByClassName('restoreBtn');
+    for (var i = 0; i < restoreButtons.length; i++) {
+        restoreButtons[i].onclick = function() {
+            var li = this.parentElement;
+            li.style.display = 'none';
+        }
+    }
+
+var saveBtn = document.getElementById("saveConfigBtn");
+saveBtn.onclick = function() {
+	var bgColor = document.getElementById("bgColor").value;
+	var fontFamily = document.getElementById("fontFamily").value;
+	var fontSize = document.getElementById("fontSize").value + 'px';
+	var darkMode = document.getElementById("darkMode").checked;
+	var language = document.getElementById("language").value;
+	var notifications = document.getElementById("notifications").checked;
+	var acceptCookies = document.getElementById("acceptCookies").checked;
+
+	// Appliquer les configurations
+	document.body.style.backgroundColor = bgColor;
+	document.body.style.fontFamily = fontFamily;
+	document.body.style.fontSize = fontSize;
+	
+	if (darkMode) {
+		document.body.style.backgroundColor = '#333';
+		document.body.style.color = '#fff';
+	} else {
+		document.body.style.backgroundColor = bgColor;
+		document.body.style.color = '#000';
+	}
+
+	// Simuler la sauvegarde des paramètres
+	console.log("Configurations sauvegardées:");
+	console.log("Couleur de fond: " + bgColor);
+	console.log("Police: " + fontFamily);
+	console.log("Taille de la police: " + fontSize);
+	console.log("Mode sombre: " + darkMode);
+	console.log("Langue: " + language);
+	console.log("Notifications: " + notifications);
+	console.log("Accepter les cookies: " + acceptCookies);
+
+	if (acceptCookies) {
+		document.cookie = "acceptCookies=true; path=/";
+	} else {
+		document.cookie = "acceptCookies=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+	}
+
+	alert("Configurations sauvegardées!");
+
+	modal.style.display = "none";
+}
+
+ var cancelBtn = document.getElementById('cancelBtn');
+ cancelBtn.onclick = function() {
+    modal_upload.style.display = 'none';
+    // Optionally, you can add code here to cancel the download process
+    alert('Téléchargement annulé !');
+  }
+  
+  // Simulating download process
+  var downloadTimer = setTimeout(function() {
+    modal_upload.style.display = 'none';
+    alert('Téléchargement terminé !');
+  }, 200000); // Change 3000 to desired milliseconds for download time
+</script>
+</body>
+</html>

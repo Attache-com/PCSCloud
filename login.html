@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - PCSCloud</title>
+    <link rel="stylesheet" href="styles_login.css">
+</head>
+<body>
+    <div class="login-container">
+        <form class="login-form" id="login-form">
+			<div class="entete">
+				<h2>Connexion</h2>
+				<p>Accéder au portail</p>
+			</div>
+            <img src="logo.png" height=40 width=200 alt="PCSCloud">
+            <input id="username" type="text" placeholder="Identifiant ou email" required>
+            <input id="password" type="password" placeholder="Mot de passe" required>
+            <a href="#">mot de passe oublié ?</a>
+            <div class="remember-me">
+                <input type="checkbox" id="remember-me">
+                <label for="remember-me" id="lbl-remember-me">Mémoriser mon identifiant</label>
+            </div>
+            <button id="btn_se_connecter" type="submit">Se connecter</button>
+            <a href="new_compte.html" id="lien_new_compte" style="text-align:left">Créer un compte PCSCloud</a>
+        </form>
+    </div>
+	
+<script>
+    // Écouter l'événement de soumission du formulaire
+    document.getElementById("login-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Empêcher l'envoi du formulaire par défaut
+
+        // Récupérer les valeurs des champs
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        // Ici, vous pouvez effectuer une vérification (simulée) des identifiants
+        // Par exemple, vérifier si les identifiants sont corrects
+        if (username === "ged.marcopera@gmail.com" && password === "ged.marcopera@gmail.com2023") {
+            // Rediriger vers la nouvelle page après la connexion réussie
+            window.location.href = "dashboard.html"; // Assurez-vous que "accueil.html" est correct
+        } else {
+            alert("Identifiants incorrects. Veuillez réessayer.");
+        }
+    });
+	</script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f8f8;
+    padding: 10px 20px;
+}
+
+.logo img {
+    height: 50px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+nav ul li a.dashboard {
+    background-color: #ffcc00;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.hero {
+    background-image: url('hero-background.jpeg');
+    background-size: 100% 100%;
+    background-position: center;
+    color: white;
+	height:300px;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.services {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 40px;
+    background-color: #f1f1f1;
+}
+
+.service {
+    background-color: white;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 230px;
+	height:220px;
+    border-radius: 5px 5px 0 0;
+}
+
+.service img {
+    height: 80px;
+}
+
+.bouton-span a {
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.bouton-span {
+	width:88%;
+    display: inline-block;
+    padding: 12px 18px; /* Ajustez le padding selon vos besoins */
+    background-color: #007bff; /* Couleur de fond du bouton */
+    text-align: center;
+    /* border-radius: 4px;  Coins arrondis */
+    cursor: pointer; /* Afficher le curseur comme pointeur */
+    border: none; /* Supprimer la bordure par défaut */
+    text-decoration: none; /* Supprimer le soulignement du texte */
+}
+
+.bouton-span:hover {
+    background-color: #0056b3; /* Nouvelle couleur de fond au survol */
+}
+
+.bouton-span a {
+    color: white; /* Couleur du texte */
+}
+
+/* .about { */
+    /* padding: 20px; */
+    /* text-align: center; */
+    /* background-color: white; */
+/* } */
+
+/* .about { */
+    /* background-image: url('about-background.jpg'); */
+    /* background-size: cover; */
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+    /* padding: 40px 20px; */
+    /* color: white; */
+    /* text-align: center; */
+/* } */
+
+.about {
+    display: flex;
+    align-items: center;
+    background-image: url('cloud_nuage.png');
+    background-size: 35% 90%;
+    background-position: right center;
+    background-repeat: no-repeat;
+    padding: 40px 30px;
+    color: white;
+    height:200px;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.text_about {
+    text-align: left;
+	color: black;
+	width: 60%;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.animated-div {
+	transition: transform 0.5s ease;
+}
+
+.animated-div:hover {
+	transform: scale(1.5) rotate(45deg);
+}

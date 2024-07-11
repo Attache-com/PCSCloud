@@ -1,0 +1,393 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 150px;
+    margin-right: 10px;
+	margin-bottom:10px;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.menu li {
+    margin: 10px 0;
+}
+
+.menu ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.header-left {
+    font-size: 14px;
+}
+
+.header-right {
+	position:relative;
+    font-size: 14px;
+	width: 50px;
+	height: 50px;
+	background-color: #007bff;
+	border-radius: 50%; /* Utilisation de 50% pour créer un cercle */
+	text-align: center; /* Centrer le contenu */
+	line-height: 50px; /* Alignement vertical du contenu */
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+	margin-top:0;
+	cursor: pointer; /* Utilisation du curseur de la main */
+}
+
+.table-container {
+    max-width: 100%; /* Largeur maximale du conteneur */
+    max-height: 620px; /* Hauteur maximale du conteneur */
+    overflow: auto; /* Activer le défilement */
+  /*  border: 1px solid #ccc;  Bordure autour du conteneur */
+    padding: 10px; /* Espacement à l'intérieur du conteneur */
+}
+
+.content {
+    margin-top: 20px;
+}
+
+h2 {
+    margin: 0 0 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    text-align: left;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #ccc;
+}
+
+tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.folder-icon::before {
+    content: "📁";
+    margin-right: 10px;
+}
+
+.pdf-icon::before {
+    content: "📄";
+    margin-right: 10px;
+}
+
+ /* Styles pour le bouton d'upload */
+    .upload-button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        text-align: center;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+		width: 100%; /* Largeur du bouton */
+    }
+
+    .upload-button:hover {
+        background-color: red;
+    }
+
+    /* Style pour l'icône de téléchargement */
+    .upload-button::before {
+        content: "\2601"; /* Unicode pour une icône de téléchargement vers le bas */
+        margin-right: 5px;
+    }
+
+#corbeilLi {
+        display: block;
+        width: 100%; /* Largeur du bouton */
+        padding: 10px;
+        background-color: #007bff; /* Couleur de fond du bouton */
+        color: #fff; /* Couleur du texte */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    #corbeilLi:hover {
+        background-color: #c82333; /* Couleur de fond du bouton au survol */
+    }
+
+    /* Icone de la corbeille */
+    #corbeilLi::before {
+        content: "\1F5D1"; /* Unicode pour l'icône de corbeille */
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 18px;
+    }
+	
+	
+	#configLi {
+        display: block;
+        width: 100%; /* Largeur du bouton */
+        padding: 10px;
+        background-color: #007bff; /* Couleur de fond du bouton */
+        color: #fff; /* Couleur du texte */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    #configLi:hover {
+        background-color: #0056b3; /* Couleur de fond du bouton au survol */
+    }
+
+    /* Icône de paramètres */
+    #configLi::before {
+        content: "\2699"; /* Unicode pour l'icône de paramètres */
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 18px;
+    }
+	
+   /* Styles pour le footer */
+    footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    footer ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    footer ul li {
+        display: inline;
+        margin: 0 10px;
+    }
+
+    footer ul li a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    footer ul li a:hover {
+        text-decoration: underline;
+    }
+	
+	  /* Style pour le texte du copyright */
+    .copyright {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+	
+	
+	/* Styles pour le modal */
+.modal {
+  display: none; /* Cache le modal par défaut */
+  position: fixed; /* Positionnement fixe pour le modal */
+  z-index: 1; /* Place le modal au-dessus de tout le reste */
+  left: 0;
+  top: 0;
+  width: 100%; /* Largeur pleine */
+  height: 100%; /* Hauteur pleine */
+  overflow: auto; /* Permet de faire défiler le contenu du modal si nécessaire */
+  background-color: rgba(0,0,0,0.5); /* Fond semi-transparent */
+}
+
+/* Contenu du modal */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* Centre le modal verticalement */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Largeur du contenu du modal */
+}
+
+/* Style pour le bouton de fermeture (×) */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Taille moyenne du modal */
+.modal-content.medium {
+  width: 40%; /* Ajustement de la largeur pour un modal moyen */
+}
+
+#btn_se_connecter {
+  background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0px 0;
+    border-radius: 4px;
+    cursor: pointer;
+	position:relative;
+	align-items: right;
+	float:right;
+}
+#btn_se_connecter:hover {
+    background-color: #0056b3;
+}
+
+#btn_se_connecter a {
+    color: white;
+    text-decoration: none;
+}
+
+#btn_se_connecter2 {
+  background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0px 0;
+    border-radius: 4px;
+    cursor: pointer;
+	position:relative;
+	align-items: right;
+}
+#btn_se_connecter2:hover {
+    background-color: #0056b3;
+}
+
+#btn_se_connecter2 a {
+    color: white;
+    text-decoration: none;
+}
+
+td {
+    cursor: pointer;
+}
+
+
+/* MODAL CORBEILLE */
+#trashList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#trashList li {
+   /* display: flex; */
+    justify-content: space-between;
+    margin: 0 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.restoreBtn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.restoreBtn:hover {
+    background-color: #45a049;
+}
+
+
+/* MODAL CONFIG */
+#configForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#configForm label {
+    margin-bottom: 5px;
+}
+
+#configForm input,
+#configForm select {
+    margin-bottom: 1px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+#saveConfigBtn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+#saveConfigBtn:hover {
+    background-color: #45a049;
+}
+
+
+/* MODAL TELECHARGEMENT */
+/* Loader animation */
+.loader {
+  border: 4px solid #f3f3f3; /* Light grey */
+  border-top: 4px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

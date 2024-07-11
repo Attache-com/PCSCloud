@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="styles_inscription.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="logo.png" alt="Logo de votre entreprise">
+        </div>
+        <h2>Inscription</h2>
+        <form id="registrationForm" onsubmit="return validateForm()">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required>
+
+            <label for="email">Adresse Gmail :</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="confirmEmail">Confirmer l'adresse Gmail :</label>
+            <input type="email" id="confirmEmail" name="confirmEmail" required>
+            <span id="emailConfirm" class="confirmation"></span>
+
+            <label for="tel">Téléphone :</label>
+            <input type="tel" id="tel" name="tel" pattern="[0-9]{10}" placeholder="Format : 0123456789" required>
+
+            <button type="submit" id="btn_add">S'inscrire</button>
+        </form>
+        <p id="message"></p>
+    </div>
+
+<script>
+	var btn = document.getElementById("btn_add");
+	
+	btn.onclick = function() {
+	  validateForm();
+	}
+	
+	function validateForm() {
+		var nom = document.getElementById('nom').value;
+		var prenom = document.getElementById('prenom').value;
+		var email = document.getElementById('email').value;
+		var confirmEmail = document.getElementById('confirmEmail').value;
+		var tel = document.getElementById('tel').value;
+		var emailRegex = /^[a-zA-Z0-9._-]+@gmail\.com$/;
+		var telRegex = /^[0-9]{10}$/;
+
+		if (nom.trim() === "") {
+			showMessage('Veuillez entrer votre nom.');
+			return false;
+		}
+		
+		if (prenom.trim() === "") {
+			showMessage('Veuillez entrer votre prénom.');
+			return false;
+		}
+
+		if (!emailRegex.test(email)) {
+			showMessage('Veuillez entrer une adresse Gmail valide.');
+			return false;
+		}
+
+		if (email !== confirmEmail) {
+			showMessage('Les adresses Gmail ne correspondent pas.');
+			return false;
+		}
+
+		if (!telRegex.test(tel)) {
+			showMessage('Veuillez entrer un numéro de téléphone valide (10 chiffres).');
+			return false;
+		}
+
+		// Validation réussie
+		showMessage('Inscription réussie !');
+		return true;
+	}
+
+	function showMessage(message) {
+		document.getElementById('message').innerText = message;
+	}
+</script>
+</body>
+</html>
